@@ -50,15 +50,13 @@ init(Host, _Opts) ->
     inets:start(),
     ssl:start(),    
     ejabberd_hooks:add(offline_message_hook, Host, ?MODULE, send_notice, 10),
-    ejabberd_hooks:add(online_message_hook, Host, ?MODULE, send_notice, 10),
-    ejabberd_hooks:add(message_hook, Host, ?MODULE, send_notice, 10),
+    ejabberd_hooks:add(online_message_hook, Host, ?MODULE, send_notice, 10),    
     ok.
 
 stop(Host) ->
     ?INFO_MSG("Stopping mod_messages_post", [] ),
     ejabberd_hooks:delete(offline_message_hook, Host, ?MODULE, send_notice, 10),
-    ejabberd_hooks:delete(online_message_hook, Host, ?MODULE, send_notice, 10),
-    ejabberd_hooks:delete(message_hook, Host, ?MODULE, send_notice, 10),
+    ejabberd_hooks:delete(online_message_hook, Host, ?MODULE, send_notice, 10),    
     ok.
 
 send_notice(From, To, Packet) ->
