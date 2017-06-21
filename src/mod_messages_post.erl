@@ -83,8 +83,8 @@ send_notice(From, To, Packet) ->
 send_packet(Packet, _C2SState, From, To) ->
     Type = fxml:get_tag_attr_s(<<"type">>, Packet),
     Body = fxml:get_path_s(Packet, [{elem, <<"body">>}, cdata]),
-    Token = gen_mod:get_module_opt(To#jid.lserver, ?MODULE, auth_token, fun(S) -> iolist_to_binary(S) end, list_to_binary("")),
-    PostUrl = gen_mod:get_module_opt(To#jid.lserver, ?MODULE, post_url, fun(S) -> iolist_to_binary(S) end, list_to_binary("")),
+    Token = gen_mod:get_module_opt(From#jid.lserver, ?MODULE, auth_token, fun(S) -> iolist_to_binary(S) end, list_to_binary("")),
+    PostUrl = gen_mod:get_module_opt(From#jid.lserver, ?MODULE, post_url, fun(S) -> iolist_to_binary(S) end, list_to_binary("")),
 
     if (Type == <<"chat">>) and (Body /= <<"">>) ->
 	      Sep = "&",
