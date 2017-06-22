@@ -1,4 +1,5 @@
 # mod_messages_post
+Required ejabberd v16.03.
 
 Installing:
 ==========
